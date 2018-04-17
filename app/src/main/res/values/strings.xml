@@ -14,6 +14,6 @@
     <string name="btnEql">=</string>
     <string name="btnPlus">+</string>
     <string name="btnMin">-</string>
-    <string name="btnMulty">X</string>
-    <string name="btnDivis"></string>
+    <string name="btnMulty">x</string>
+    <string name="btnDivis">÷</string>
 </resources>
