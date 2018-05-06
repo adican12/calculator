@@ -1,133 +1,118 @@
 package com.adidroid.calculator;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
+import android.widget.Toast;
+//import android.support.v7.widget.Adapter;
+import java.io.Console;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView calcScreen;
-    private String Display = "";
-    private String currentOperator = "";
-    private String result = "";
+
+    final static ArrayList<MyListItem> hw = new ArrayList<>();
+    static {
+        hw.add(new MyListItem("homework 1 : Calculator Activity ",calcActivity.class));
+        hw.add(new MyListItem("homework 2 : Birthday Activity ",calcActivity.class));
+        //more homework..
+    }
+
+    RecyclerView mRecyclerView;
+    LinearLayoutManager mLayoutManager;
+    MyAdapter mAdapter;
+
+    View.OnClickListener mClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getBaseContext(), "Activity is not attached", Toast.LENGTH_LONG).show();
+            MyListItem clicked = (MyListItem) view.getTag();
+            if (clicked.getActivity() == null) {
+                if (clicked.getPackageName() != null) {
+                    // we need to launch a different app here, if it's available.
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage(clicked
+                            .getPackageName());
+                    if (launchIntent == null) {
+                        Toast.makeText(getBaseContext(), "Couldn't find activity for package:" +
+                                clicked.getActivity(), Toast.LENGTH_LONG).show();
+
+                        // example for removing item from the list
+                        // ---------------------------------------
+                        // Notice that we need to remove from the Model (the array)
+                        // and not from the ListView (the View)!
+                        // The view will be updated after the  notifyDataSetChanged();
+                        hw.remove(clicked);
+                        mAdapter.notifyDataSetChanged();
+
+                    } else {
+                        startActivity(launchIntent);
+                    }
+                } else {
+                    // nothing to do here
+                    Toast.makeText(getBaseContext(), "Activity is not attached", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Intent intent = new Intent(getBaseContext(), clicked.getActivity());
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mainactivity);
 
-        calcScreen = findViewById(R.id.calcView);
-        calcScreen.setText(Display);
+        mRecyclerView = findViewById(R.id.homework);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(hw,mClickListener);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
-    private void updateScreen(){
-        calcScreen.setText(Display);
-    }
-
-
-    public void onDigitClicked(View v){
-        if(result != ""){
-            clear();
-            updateScreen();
-        }
-        Button b = (Button) v;
-        Display += b.getText();
-        updateScreen();
-    }
-
-    private boolean isOperator(char op){
-        switch (op){
-            case '+':
-            case '-':
-            case 'x':
-            case '÷':return true;
-            default: return false;
-        }
-    }
-
-
-    public void onClickOperator(View v){
-        if(Display == "") return;
-
-        Button b = (Button)v;
-
-        if(result != ""){
-            String _display = result;
-            clear();
-            Display = _display;
-        }
-
-        if(currentOperator != ""){
-            Log.d("CalcX", ""+Display.charAt(Display.length()-1));
-            if(isOperator(Display.charAt(Display.length()-1))){
-                Display = Display.replace(Display.charAt(Display.length()-1), b.getText().charAt(0));
-                updateScreen();
-                return;
-            }else{
-                getResult();
-                Display = result;
-                result = "";
-            }
-            currentOperator = b.getText().toString();
-        }
-        Display += b.getText();
-        currentOperator = b.getText().toString();
-        updateScreen();
-    }
-
-    private void clear(){
-        Display = "";
-        currentOperator = "";
-        result = "";
-    }
-
-    public void onClickClear(View v){
-        clear();
-        updateScreen();
-    }
-
-    private double operate(String a, String b, String op){
-        switch (op){
-            case "+": return Double.valueOf(a) + Double.valueOf(b);
-            case "-": return Double.valueOf(a) - Double.valueOf(b);
-            case "x": return Double.valueOf(a) * Double.valueOf(b);
-            case "÷": try{
-                return Double.valueOf(a) / Double.valueOf(b);
-            }catch (Exception e){
-                Log.d("Calc", e.getMessage());
-            }
-            default: return -1;
-        }
-    }
-
-    private boolean getResult(){
-        if(currentOperator == "") return false;
-        String[] operation = Display.split(Pattern.quote(currentOperator));
-        if(operation.length < 2) return false;
-        result = String.valueOf(operate(operation[0], operation[1], currentOperator));
-        return true;
-    }
-
-    public void onClickEqual(View v){
-        if(Display == "") return;
-        if(!getResult()) return;
-        calcScreen.setText(Display + "\n" + String.valueOf(result));
-    }
-
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+////        getMenuInflater().inflate(R.menu.lesson4, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//        System.out.println("here onOptionsItemSelected");
+//        //noinspection SimplifiableIfStatement
+////        if (id == R.id.mi_settings) {
+////            Toast.makeText(getBaseContext(), "Todo: settings screen", Toast.LENGTH_LONG).show();
+////            return true;
+////        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//
+//    public void onPrefsClicked(View view) {
+////        startActivity(new Intent(this, PrefsActivity.class));
+//    }
 }
-
-
-
-
-
-
-
-
-
 
