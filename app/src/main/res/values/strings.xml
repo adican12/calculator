@@ -16,4 +16,5 @@
     <string name="btnMin">-</string>
     <string name="btnMulty">x</string>
     <string name="btnDivis">÷</string>
+    <string name="Insert">Insert your birthdate</string>
 </resources>
