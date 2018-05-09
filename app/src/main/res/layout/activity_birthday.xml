@@ -6,9 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    tools:context=".birthdayActivity">
+    tools:context="b_day.old_birthdayActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_birthdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="@android:color/holo_orange_dark"
+        android:onClick="onClickedInset"
         android:text="@string/Insert"
         android:textAlignment="center"
         android:textSize="24sp"

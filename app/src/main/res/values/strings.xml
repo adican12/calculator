@@ -23,10 +23,8 @@
     <string name="captains_log">Captains\' Log</string>
     <string name="read_from_db">Read from DB</string>
     <string name="name">Name</string>
-    <string name="just_pick_a_number_i_ll_remember_it">Just pick a number, I\'ll remember it</string>
-    <string name="tap_a_row">Tap on a row</string>
-    <string name="now_i_m_here">Now I\'m Here</string>
-    <string name="now_you_see_me">Now you see me</string>
-    <string name="title_activity_low_level_graphics">LowLevelGraphicsActivity</string>
-
+    <string name="birth">Birth date</string>
+    <string name="comment">Comment</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 </resources>

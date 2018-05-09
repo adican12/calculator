@@ -1,122 +1,44 @@
 package com.adidroid.calculator;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.arch.persistence.room.Room;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
+
+import com.adidroid.calculator.BirthdayInsertion;
+import com.adidroid.calculator.Person;
+import com.adidroid.calculator.PersonAdapter;
+import com.adidroid.calculator.appDatabase;
+
 import java.util.List;
 
-
-
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_birthday);
-    }
-
-    AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-            AppDatabase.class, "clog.db").build();
-*/
-
 public class birthdayActivity extends AppCompatActivity {
-    EditText logInputText;
-    TextView logOutputText;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
 
-    RecyclerView B_RecyclerView;
-    LinearLayoutManager B_LayoutManager;
-    B_Adapter b_adapter;
-    List<CaptainsLogEntity> database_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage_example);
-        logInputText = findViewById(R.id.editText);
-        logOutputText = findViewById(R.id.textView);
+        setContentView(R.layout.acrivity_birthday_list);
 
+        recyclerView = findViewById(R.id.recycler_view);
 
-        //// new code ---
+        appDatabase db = Room.databaseBuilder(getApplicationContext(),appDatabase.class,"birthdays")
+                .allowMainThreadQueries()
+                .build();
 
-        B_RecyclerView= findViewById(R.id.recycle_birthdate);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        B_RecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        B_LayoutManager = new LinearLayoutManager(this);
-        B_RecyclerView.setLayoutManager(B_LayoutManager);
-
-//        LiveData<List<CaptainsLogEntity> receyled_birthday = CaptainsLogDb.getInstance(this).readCaptainsLog();
-        List<CaptainsLogEntity> new_list = new ArrayList<CaptainsLogEntity>();
-        b_adapter = new B_Adapter(new_list);
-        B_RecyclerView.setAdapter(b_adapter);
-
-        // specify an adapter (see also next example)
-/*
-        viewModel = ViewModelProviders.of(this).get(B_Adapter.B_ViewHolder.class);
-
-        viewModel.getItemAndPersonList().observe(MainActivity.this, new Observer<List<CaptainsLogEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<BorrowModel> itemAndPeople) {
-                recyclerViewAdapter.addItems(itemAndPeople);
-            }
-        });
-*/
-/////////////////////////
-
-        // Create the observer which updates the UI.
-        final Observer<List<CaptainsLogEntity>> logObserver = new Observer<List<CaptainsLogEntity>>() {
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-            // Create a calendar object that will convert the date and time value in milliseconds to date.
-            Calendar calendar = Calendar.getInstance();
-            StringBuilder sb = new StringBuilder();
-
-            @Override
-            public void onChanged(@Nullable final List<CaptainsLogEntity> newLog) {
-                // Update the UI, in this case, a TextView.
-
-                sb.setLength(0);
-                for (CaptainsLogEntity cle : newLog) {
-//                    calendar.setTimeInMillis(cle.time);
-//                    sb.append(formatter.format(calendar.f()));
-                    sb.append("birthdate : ");
-                    sb.append(cle.birthdate);
-//                    sb.append("-  ");
-//                    sb.append(cle.log);
-                    sb.append('\n');
-                }
-
-                logOutputText.setText(sb);
-            }
-        };
-
-        LiveData<List<CaptainsLogEntity>> captainsLogEntityLiveData = CaptainsLogDb.getInstance(this).readCaptainsLog();
-
-        captainsLogEntityLiveData.observe(this, logObserver);
+        List<Person> persons = db.personDao().allPersons();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new PersonAdapter(persons);
+        recyclerView.setAdapter(adapter);
     }
 
-    public void onWriteClicked(View view) {
-        String text = logInputText.getText().toString();
-        if (!text.isEmpty()) {
-            CaptainsLogEntity logEntity = new CaptainsLogEntity();
-            logEntity.setLog(text);
-            CaptainsLogDb.getInstance(this).writeToCaptainsLog(logEntity);
-            logInputText.clearComposingText();
-        }
+    public void onClick(View view){
+        Intent intent = new Intent(this,BirthdayInsertion.class);
+        startActivity(intent);
     }
-
-
 }

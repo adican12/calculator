@@ -5,21 +5,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 //import android.support.v7.widget.Adapter;
-import java.io.Console;
 import java.util.ArrayList;
+
+import b_day.old_birthdayActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     final static ArrayList<MyListItem> hw = new ArrayList<>();
     static {
         hw.add(new MyListItem("Calculator Activity ",calcActivity.class));
-        hw.add(new MyListItem("Birthday Activity ",birthdayActivity.class));
+        hw.add(new MyListItem("Birthday Activity ", birthdayActivity.class));
         //more homework..
     }
 
