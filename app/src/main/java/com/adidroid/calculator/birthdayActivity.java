@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 
@@ -38,6 +39,7 @@ public class birthdayActivity extends AppCompatActivity {
     }
 
     public void onClick(View view){
+        Log.d("myapp","onClick");
         Intent intent = new Intent(this,BirthdayInsertion.class);
         startActivity(intent);
     }

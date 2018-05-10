@@ -21,7 +21,8 @@ public class old_birthdayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_birthday);
+
+//        setContentView(R.layout.activity_birthday);
 //        logInputText = findViewById(R.id.editText);
 //        logOutputText = findViewById(R.id.textView);
 
