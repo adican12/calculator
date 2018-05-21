@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    tools:context=".drawActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/click_button"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_orange_dark"
+        android:onClick="click_button"
+        android:text="@string/click_here"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationView8" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView2"
+        app:layout_constraintStart_toStartOf="@+id/animationView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView2"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView3"
+        app:layout_constraintStart_toStartOf="@+id/animationView3"
+        app:layout_constraintTop_toBottomOf="@+id/animationView" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView3"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView4"
+        app:layout_constraintStart_toStartOf="@+id/animationView4"
+        app:layout_constraintTop_toBottomOf="@+id/animationView2" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView4"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView5"
+        app:layout_constraintStart_toStartOf="@+id/animationView5"
+        app:layout_constraintTop_toBottomOf="@+id/animationView3" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView5"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView6"
+        app:layout_constraintStart_toStartOf="@+id/animationView6"
+        app:layout_constraintTop_toBottomOf="@+id/animationView4" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView6"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView7"
+        app:layout_constraintStart_toStartOf="@+id/animationView7"
+        app:layout_constraintTop_toBottomOf="@+id/animationView5" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView7"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView8"
+        app:layout_constraintStart_toStartOf="@+id/animationView8"
+        app:layout_constraintTop_toBottomOf="@+id/animationView6" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView8"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView9"
+        app:layout_constraintStart_toStartOf="@+id/animationView9"
+        app:layout_constraintTop_toBottomOf="@+id/animationView7" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView9"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/animationView10"
+        app:layout_constraintStart_toStartOf="@+id/animationView10"
+        app:layout_constraintTop_toBottomOf="@+id/animationView8" />
+
+    <com.adidroid.calculator.animationView
+        android:id="@+id/animationView10"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationView9" />
+
+
+</android.support.constraint.ConstraintLayout>
