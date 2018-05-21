@@ -10,11 +10,6 @@ import android.util.Log;
 import android.view.View;
 
 
-import com.adidroid.calculator.BirthdayInsertion;
-import com.adidroid.calculator.Person;
-import com.adidroid.calculator.PersonAdapter;
-import com.adidroid.calculator.appDatabase;
-
 import java.util.List;
 
 public class birthdayActivity extends AppCompatActivity {
@@ -40,7 +35,7 @@ public class birthdayActivity extends AppCompatActivity {
 
     public void onClick(View view){
         Log.d("myapp","onClick");
-        Intent intent = new Intent(this,BirthdayInsertion.class);
+        Intent intent = new Intent(this,birthday_insertion.class);
         startActivity(intent);
     }
 }
