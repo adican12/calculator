@@ -19,6 +19,9 @@
     <string name="Insert">Insert your birthdate</string>
 
 
+    <!--<string name="app_name">HomeWork Application</string>-->
+    <string name="view_description">Bitmap View</string>
+
     <string name="write_to_db">Write to DB</string>
     <string name="captains_log">Captains\' Log</string>
     <string name="read_from_db">Read from DB</string>

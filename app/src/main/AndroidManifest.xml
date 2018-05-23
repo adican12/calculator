@@ -13,14 +13,11 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="b_day.old_birthdayActivity" />
-        <activity android:name="b_day.insert_birthday" />
         <activity android:name=".birthdayActivity" />
-        <activity android:name=".drawActivity"></activity>
+        <activity android:name=".MultiPropertyAnimation"></activity>
     </application>
 
 </manifest>

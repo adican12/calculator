@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     static {
         hw.add(new MyListItem("Calculator Activity ",calcActivity.class));
         hw.add(new MyListItem("Birthday Activity ", birthdayActivity.class));
-        hw.add(new MyListItem("Draw Activity ", drawActivity.class));
+        hw.add(new MyListItem("Draw Activity ", MultiPropertyAnimation.class));
         //more homework..
     }
 
