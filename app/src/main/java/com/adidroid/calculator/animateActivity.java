@@ -62,10 +62,6 @@ public class animateActivity extends AppCompatActivity {
             }
         });
 
-        /**
-         *   TOP = 3; BOTTOM = 4; START = 6; END = 7;
-         */
-
         TextView green = createTextView();
         green = init(green.getId(), "GREEN", R.color.colorGreen, R.color.colorBlack);
         set1.constrainHeight(green.getId(), WRAP_CONTENT);
